@@ -13,11 +13,9 @@ def generate_number_forms(word_and_tags: tuple) -> list:
 def generate_ordinal_numeral(word_and_tags: tuple) -> list:
     """функция, генерирующая порядковое числительное
     после гласных
-        - ншы
-        - ншi
+        - ншы, - ншi
     после согласных
-        - ыншы
-        - iншi
+        - ыншы, - iншi
     """
     word, tags = word_and_tags
     result = []

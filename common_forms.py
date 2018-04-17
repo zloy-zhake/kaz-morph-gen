@@ -10,14 +10,11 @@ def generate_plural(word_and_tags: tuple) -> list:
     # region
     """Функция, генерирующая множественное число (көптiк).\n
     если слово заканчивается на ГЛАСНЫЙ, Р, Й, У
-        - лар,
-        - лер,
+        - лар, - лер,
     если слово заканчивается на М, Н, Ң, Л, З
-        - дар,
-        - дер,
+        - дар, - дер,
     если слово оканчивается на глухой согласный или Б, В, Г, Д
-        - тар,
-        - тер
+        - тар, - тер
     """
     # endregion
 
@@ -54,39 +51,31 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     После гласных
         -м
     После согласных
-        -ым
-        -iм
+        -ым, -iм
 
     1 лицо мн.числа
     После гласных
-        -мыз
-        -мiз
+        -мыз, -мiз
     После согласных
-        -ымыз
-        -iмiз
+        -ымыз, -iмiз
 
     2 лицо ед. и мн.числа
     После гласных
         -ң
     После согласных
-        -ың
-        -iң
+        -ың, -iң
 
     2 лицо ед. и мн.числа (вежливое)
     После гласных
-        -ңыз
-        -ңыз
+        -ңыз, -ңыз
     После согласных
-        -ыңыз
-        -iңiз
+        -ыңыз, -iңiз
 
     3 лицо ед. и мн. числа
     После гласных
-        -сы
-        -сi
+        -сы, -сi
     После согласных
-        -ы
-        -i
+        -ы, -i
     """
     # endregion
 
@@ -97,8 +86,7 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     # После гласных
     #     -м
     # После согласных
-    #     -ым
-    #     -iм
+    #     -ым, -iм
 
     # TODO заменить эту каку на word[-1] in vowels
 
@@ -113,11 +101,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
 
     # 1 лицо мн.числа
     # После гласных
-    #     -мыз
-    #     -мiз
+    #     -мыз, -мiз
     # После согласных
-    #     -ымыз
-    #     -iмiз
+    #     -ымыз, -iмiз
     if len(set(word[-1]).intersection(vowels)) != 0:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="мыз",
@@ -133,8 +119,7 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     # После гласных
     #     -ң
     # После согласных
-    #     -ың
-    #     -iң
+    #     -ың, -iң
     if len(set(word[-1]).intersection(vowels)) != 0:
         new_word = add_affix_with_harmony(word, affix='ң')
     elif len(set(word[-1]).intersection(consonants)) != 0:
@@ -146,11 +131,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
 
     # 2 лицо ед. и мн.числа (вежливое)
     # После гласных
-    #     -ңыз
-    #     -ңiз
+    #     -ңыз, -ңiз
     # После согласных
-    #     -ыңыз
-    #     -iңiз
+    #     -ыңыз, -iңiз
     if len(set(word[-1]).intersection(vowels)) != 0:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ңыз",
@@ -165,11 +148,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
 
     # 3 лицо ед. и мн. числа
     # После гласных
-    #     -сы
-    #     -сi
+    #     -сы, -сi
     # После согласных
-    #     -ы
-    #     -i
+    #     -ы, -i
     if len(set(word[-1]).intersection(vowels)) != 0:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="сы",
