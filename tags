@@ -30,9 +30,14 @@ case - падеж:
     <abl> - шығыс септік (ablative case).
     <ins> - көмектес септік (instrumental case)
 
+person - лицо:
+    <p1> - 1 лицо    
+    <p2> - 2 лицо
+    <p3> - 3 лицо    
+
 ==========
 
 Грамматические формы числительных
 
-numeral type
+numeral_type
     <ord> - порядковое числительное

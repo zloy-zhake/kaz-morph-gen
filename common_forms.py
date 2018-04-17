@@ -36,7 +36,8 @@ def generate_plural(word_and_tags: tuple) -> list:
                                                    hard_affix="тар",
                                                    soft_affix="тер")
 
-    new_tags = tags + "<pl>"
+    new_tags = tags.copy()
+    new_tags["plurality"] = "<pl>"
 
     # это странно, но по-другому один кортеж не возвращается ((
     result = []
@@ -96,7 +97,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ым",
                                                    soft_affix="ім")
-    new_tags = tags + "<p1><px1sg>"
+    new_tags = tags.copy()
+    new_tags["person"] = "<p1>"
+    new_tags["possession"] = "<px1sg>"
     result.append((new_word, new_tags))
 
     # 1 лицо мн.числа
@@ -112,7 +115,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ымыз",
                                                    soft_affix="iмiз")
-    new_tags = tags + "<p1><px1pl>"
+    new_tags = tags.copy()
+    new_tags["person"] = "<p1>"
+    new_tags["possession"] = "<px1pl>"
     result.append((new_word, new_tags))
 
     # 2 лицо ед. и мн.числа
@@ -127,7 +132,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
                                                    hard_affix="ың",
                                                    soft_affix="iң")
     # тут подходят px2sg и px2pl, пока ставится "объединенный вариант"
-    new_tags = tags + "<p2><px2sp>"
+    new_tags = tags.copy()
+    new_tags["person"] = "<p2>"
+    new_tags["possession"] = "<px2sp>"
     result.append((new_word, new_tags))
 
     # 2 лицо ед. и мн.числа (вежливое)
@@ -145,7 +152,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
                                                    soft_affix="iңiз")
     # тут подходят px2sg и px2pl, пока ставится "объединенный вариант"
     # TODO придумать тег для вежлифой формы
-    new_tags = tags + "<p2><px2sp_2>"
+    new_tags = tags.copy()
+    new_tags["person"] = "<p2>"
+    new_tags["possession"] = "<px2sp_2>"
     result.append((new_word, new_tags))
 
     # 3 лицо ед. и мн. числа
@@ -161,7 +170,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ы",
                                                    soft_affix="i")
-    new_tags = tags + "<p3><px3sp>"
+    new_tags = tags.copy()
+    new_tags["person"] = "<p3>"
+    new_tags["possession"] = "<px3sp>"
     result.append((new_word, new_tags))
 
     return result
@@ -185,9 +196,12 @@ def generate_all_cases(word_and_tags: tuple) -> list:
 
 def generate_atau_septik(word_and_tags: tuple) -> list:
     """Функция, генерирующая атау септік (nominative case).
-    TODO Пока не делает ничего...
     """
+    word, tags = word_and_tags
+    new_tags = tags.copy()
+    new_tags["case"] = "<nom>"
     result = []
+    result.append((word, new_tags))
     return result
 
 
@@ -217,7 +231,8 @@ def generate_ilik_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="тiң",
                                                    soft_affix="тың")
-    new_tags = tags + "<gen>"
+    new_tags = tags.copy()
+    new_tags["case"] = "<gen>"
     result.append((new_word, new_tags))
 
     return result
@@ -237,12 +252,12 @@ def generate_barys_septik(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
-    if "<px1sg>" in tags \
-            or "<px2sp>" in tags:
+    if "<px1sg>" in tags.values() \
+            or "<px2sp>" in tags.values():
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix='а',
                                                    soft_affix='е')
-    elif "<px3sp>" in tags:
+    elif "<px3sp>" in tags.values():
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="на",
                                                    soft_affix="не")
@@ -257,7 +272,8 @@ def generate_barys_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="қа",
                                                    soft_affix="ке")
-    new_tags = tags + "<dat>"
+    new_tags = tags.copy()
+    new_tags["case"] = "<dat>"
     result.append((new_word, new_tags))
 
     return result
@@ -277,7 +293,7 @@ def generate_tabys_septik(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
-    if "<px3sp>" in tags:
+    if "<px3sp>" in tags.values():
         new_word = add_affix_with_harmony(word, affix='н')
     elif len(set(word[-1]).intersection(vowels)) != 0:
         new_word = add_affix_choosing_hard_or_soft(word,
@@ -293,7 +309,8 @@ def generate_tabys_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ты",
                                                    soft_affix="тi")
-    new_tags = tags + "<acc>"
+    new_tags = tags.copy()
+    new_tags["case"] = "<acc>"
     result.append((new_word, new_tags))
 
     return result
@@ -311,7 +328,7 @@ def generate_zhatys_septik(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
-    if "<px3sp>" in tags:
+    if "<px3sp>" in tags.values():
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="нда",
                                                    soft_affix="нде")
@@ -326,7 +343,8 @@ def generate_zhatys_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="та",
                                                    soft_affix="те")
-    new_tags = tags + "<loc>"
+    new_tags = tags.copy()
+    new_tags["case"] = "<loc>"
     result.append((new_word, new_tags))
 
     return result
@@ -358,7 +376,8 @@ def generate_shygys_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="тан",
                                                    soft_affix="тен")
-    new_tags = tags + "<abl>"
+    new_tags = tags.copy()
+    new_tags["case"] = "<abl>"
     result.append((new_word, new_tags))
 
     return result
@@ -384,7 +403,9 @@ def generate_komektes_septik(word_and_tags: tuple) -> list:
     elif len(set(word[-1]).intersection(voiceless_consonant)) != 0 \
             or word[-1] in ['б', 'в', 'г', 'д']:
         new_word = add_affix_with_harmony(word, affix="пен")
-    new_tags = tags + "<ins>"
+
+    new_tags = tags.copy()
+    new_tags["case"] = "<ins>"
     result.append((new_word, new_tags))
 
     return result

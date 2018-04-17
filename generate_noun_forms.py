@@ -3,6 +3,7 @@ from common_forms import generate_all_possessives
 from common_forms import generate_all_cases
 
 
+# def generate_noun_forms(word_and_tags: tuple) -> list:
 def generate_noun_forms(word_and_tags: tuple) -> list:
     """функция, генерирующая все формы для существительного
     """
@@ -17,4 +18,6 @@ def generate_noun_forms(word_and_tags: tuple) -> list:
     # Падежные окончания (и личные) применяются в конце слова
     # (ставятся последними, если аффиксов несколько).
     #  ...
+    # TODO в конце пробегать по всем формам
+    # и заполнять отсутствующие теги значениями по умолчанию
     return result

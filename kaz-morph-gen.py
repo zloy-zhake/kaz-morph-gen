@@ -21,12 +21,16 @@ for line in sys.stdin:
     result = []
     # если слово - существительное - генерируем все формы для существительного
     if pos == 'n':
-        result += generate_noun_forms((word, "<n>"))
+        # result += generate_noun_forms((word, "<n>"))
+        result += generate_noun_forms((word, {"pos": "<n>"}))
     elif pos == "num":
-        result += generate_number_forms((word, "<num>"))
+        result += generate_number_forms((word, {"pos": "<num>"}))
     else:
         # TODO не выводить ничего или заменить на что-то более полезное?
         result = word + " has a wrong tag."
     # result += '\n'
     for generated_item in result:
-        sys.stdout.write(generated_item[0] + ':' + generated_item[1] + '\n')
+        sys.stdout.write(generated_item[0] +
+                         ':' +
+                         str(generated_item[1]) +
+                         '\n')
