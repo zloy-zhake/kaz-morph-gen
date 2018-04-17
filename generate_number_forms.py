@@ -28,7 +28,8 @@ def generate_ordinal_numeral(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ыншы",
                                                    soft_affix="iншi")
-    new_tags = tags + "<ord>"
+    new_tags = tags.copy()
+    new_tags["numeral_type"] = "<ord>"
     result.append((new_word, new_tags))
 
     return result
