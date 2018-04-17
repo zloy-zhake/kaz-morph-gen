@@ -126,6 +126,7 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ың",
                                                    soft_affix="iң")
+    # тут подходят px2sg и px2pl, пока ставится "объединенный вариант"
     new_tags = tags + "<p2><px2sp>"
     result.append((new_word, new_tags))
 
@@ -142,6 +143,7 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ыңыз",
                                                    soft_affix="iңiз")
+    # тут подходят px2sg и px2pl, пока ставится "объединенный вариант"
     # TODO придумать тег для вежлифой формы
     new_tags = tags + "<p2><px2sp_2>"
     result.append((new_word, new_tags))
