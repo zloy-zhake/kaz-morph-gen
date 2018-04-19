@@ -76,3 +76,24 @@ def generate_collective_numeral(word_and_tags: tuple) -> list:
         new_tags["numeral_type"] = "<coll>"
         result.append((new_word, new_tags))
         return result
+
+
+def generate_approximate_numeral(word_and_tags: tuple) -> list:
+    # TODO
+    """функция, генерирующая приблизитльное числительное
+    -даған/-деген
+    -лаған/-леген
+    -таған/-теген
+    и
+    -дай/-дей
+    -тай/-тей
+    означают «ОКОЛО»
+    Жүздеген – около ста
+    Елудей – около 50
+
+    «ОКОЛО», «ПРИБЛИЗИТЕЛЬНО» означают аффиксы :
+    -лап/-леп
+    -дап/-деп
+    -тап/-теп
+    Жүздеп – около ста
+    """
