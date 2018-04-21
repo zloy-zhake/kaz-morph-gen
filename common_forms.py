@@ -20,7 +20,8 @@ def generate_plural(word_and_tags: tuple) -> list:
 
     word, tags = word_and_tags
 
-    if (word[-1] in vowels) or (word[-1] in ('р', 'й', 'у')):
+    if (word[-1] in vowels) \
+            or (word[-1] in ('р', 'й', 'у')):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="лар",
                                                    soft_affix="лер")
@@ -30,8 +31,8 @@ def generate_plural(word_and_tags: tuple) -> list:
                                                    hard_affix="дар",
                                                    soft_affix="дер")
 
-    elif (word[-1] in voiceless_consonant) or \
-         (word[-1] in ('б', 'в', 'г', 'д')):
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ('б', 'в', 'г', 'д')):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="тар",
                                                    soft_affix="тер")
@@ -91,9 +92,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
 
     # TODO заменить эту каку на word[-1] in vowels
 
-    if len(set(word[-1]).intersection(vowels)) != 0:
+    if (word[-1] in vowels):
         new_word = add_affix_with_harmony(word, affix='м')
-    elif len(set(word[-1]).intersection(consonants)) != 0:
+    elif (word[-1] in consonants):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ым",
                                                    soft_affix="ім")
@@ -107,11 +108,11 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     #     -мыз, -мiз
     # После согласных
     #     -ымыз, -iмiз
-    if len(set(word[-1]).intersection(vowels)) != 0:
+    if (word[-1] in vowels):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="мыз",
                                                    soft_affix="мiз")
-    elif len(set(word[-1]).intersection(consonants)) != 0:
+    elif (word[-1] in consonants):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ымыз",
                                                    soft_affix="iмiз")
@@ -125,9 +126,9 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     #     -ң
     # После согласных
     #     -ың, -iң
-    if len(set(word[-1]).intersection(vowels)) != 0:
+    if (word[-1] in vowels):
         new_word = add_affix_with_harmony(word, affix='ң')
-    elif len(set(word[-1]).intersection(consonants)) != 0:
+    elif (word[-1] in consonants):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ың",
                                                    soft_affix="iң")
@@ -142,11 +143,11 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     #     -ңыз, -ңiз
     # После согласных
     #     -ыңыз, -iңiз
-    if len(set(word[-1]).intersection(vowels)) != 0:
+    if (word[-1] in vowels):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ңыз",
                                                    soft_affix="ңiз")
-    elif len(set(word[-1]).intersection(consonants)) != 0:
+    elif (word[-1] in consonants):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ыңыз",
                                                    soft_affix="iңiз")
@@ -162,11 +163,11 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     #     -сы, -сi
     # После согласных
     #     -ы, -i
-    if len(set(word[-1]).intersection(vowels)) != 0:
+    if (word[-1] in vowels):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="сы",
                                                    soft_affix="сi")
-    elif len(set(word[-1]).intersection(consonants)) != 0:
+    elif (word[-1] in consonants):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ы",
                                                    soft_affix="i")
@@ -217,8 +218,8 @@ def generate_ilik_septik(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
-    if len(set(word[-1]).intersection(vowels)) != 0 \
-            or word[-1] in ['м', 'н', 'ң']:
+    if (word[-1] in vowels) \
+            or (word[-1] in ['м', 'н', 'ң']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ның",
                                                    soft_affix="нiң")
@@ -226,8 +227,8 @@ def generate_ilik_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="дың",
                                                    soft_affix="дiң")
-    elif len(set(word[-1]).intersection(voiceless_consonant)) != 0 \
-            or word[-1] in ['б', 'в', 'с', 'д']:
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'с', 'д']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="тiң",
                                                    soft_affix="тың")
@@ -261,14 +262,14 @@ def generate_barys_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="на",
                                                    soft_affix="не")
-    elif len(set(word[-1]).intersection(vowels)) != 0 \
-            or len(set(word[-1]).intersection(sonorous_consonants)) != 0 \
-            or word[-1] in ['ж', 'з']:
+    elif (word[-1] in vowels) \
+            or (word[-1] in sonorous_consonants) \
+            or (word[-1] in ['ж', 'з']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ға",
                                                    soft_affix="ге")
-    elif len(set(word[-1]).intersection(voiceless_consonant)) != 0 \
-            or word[-1] in ['б', 'в', 'г', 'д']:
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'г', 'д']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="қа",
                                                    soft_affix="ке")
@@ -295,17 +296,17 @@ def generate_tabys_septik(word_and_tags: tuple) -> list:
 
     if "<px3sp>" in tags.values():
         new_word = add_affix_with_harmony(word, affix='н')
-    elif len(set(word[-1]).intersection(vowels)) != 0:
+    elif (word[-1] in vowels):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ны",
                                                    soft_affix="нi")
-    elif len(set(word[-1]).intersection(sonorous_consonants)) != 0 \
-            or word[-1] in ['з', 'ж']:
+    elif (word[-1] in sonorous_consonants) \
+            or (word[-1] in ['з', 'ж']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ды",
                                                    soft_affix="дi")
-    elif len(set(word[-1]).intersection(voiceless_consonant)) != 0 \
-            or word[-1] in ['б', 'в', 'г', 'д']:
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'г', 'д']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ты",
                                                    soft_affix="тi")
@@ -332,14 +333,14 @@ def generate_zhatys_septik(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="нда",
                                                    soft_affix="нде")
-    elif len(set(word[-1]).intersection(vowels)) != 0 \
-            or len(set(word[-1]).intersection(sonorous_consonants)) != 0 \
-            or word[-1] in ['ж', 'з']:
+    elif (word[-1] in vowels) \
+            or (word[-1] in sonorous_consonants) \
+            or (word[-1] in ['ж', 'з']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="да",
                                                    soft_affix="де")
-    elif len(set(word[-1]).intersection(voiceless_consonant)) != 0 \
-            or word[-1] in ['б', 'в', 'г', 'д']:
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'г', 'д']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="та",
                                                    soft_affix="те")
@@ -362,17 +363,17 @@ def generate_shygys_septik(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
-    if len(set(word[-1]).intersection(vowels)) != 0 \
-            or word[-1] in ['з', 'ж', 'р', 'й', 'л', 'у']:
+    if (word[-1] in vowels) \
+            or (word[-1] in ['з', 'ж', 'р', 'й', 'л', 'у']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="дан",
                                                    soft_affix="ден")
-    elif word[-1] in ['м', 'н', 'ң']:
+    elif (word[-1] in ['м', 'н', 'ң']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="нан",
                                                    soft_affix="нен")
-    elif len(set(word[-1]).intersection(voiceless_consonant)) != 0 \
-            or word[-1] in ['б', 'в', 'г', 'д']:
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'г', 'д']):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="тан",
                                                    soft_affix="тен")
@@ -395,13 +396,13 @@ def generate_komektes_septik(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
-    if len(set(word[-1]).intersection(vowels)) != 0 \
-            or word[-1] in ['м', 'н', 'ң', 'р', 'л']:
+    if (word[-1] in vowels) \
+            or (word[-1] in ['м', 'н', 'ң', 'р', 'л']):
         new_word = add_affix_with_harmony(word, affix="мен")
-    elif word[-1] in ['ж', 'з']:
+    elif (word[-1] in ['ж', 'з']):
         new_word = add_affix_with_harmony(word, affix="бен")
-    elif len(set(word[-1]).intersection(voiceless_consonant)) != 0 \
-            or word[-1] in ['б', 'в', 'г', 'д']:
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'г', 'д']):
         new_word = add_affix_with_harmony(word, affix="пен")
 
     new_tags = tags.copy()

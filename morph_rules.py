@@ -39,28 +39,32 @@ def add_affix_with_harmony(word: str, affix: str) -> str:
     # Көк + i = көгi
     # Қонақ + ы = қонағы
     # Жап + ып = жауып
-    if (word[-1] == 'к') and (affix[0] in vowels):
+    if (word[-1] == 'к') \
+            and (affix[0] in vowels):
         result[-1] = 'г'
         result += affix
 
-    elif (word[-1] == 'қ') and (affix[0] in vowels):
+    elif (word[-1] == 'қ') \
+            and (affix[0] in vowels):
         result[-1] = 'ғ'
         result += affix
 
-    elif (word[-1] == 'п') and (affix[0] in vowels):
+    elif (word[-1] == 'п') \
+            and (affix[0] in vowels):
         result[-1] = 'б'
         # TODO result[-1] = 'у'
         result += affix
 
     # В заимствованных словах, оканчивающихся на двойной согласный,
     # при добавлении аффикса один согласный выпадает.
-    elif word[-1] == word[-2]:
+    elif (word[-1] == word[-2]):
         result = word[:-1] + affix
 
     # В заимствованных словах, оканчивающихся на «Ь»,
     # при аффиксе, начинающемся с гласного, «Ь» выпадает;
     # при аффиксе, начинающемся с согласного – остается.
-    elif (word[-1] == 'ь') and (affix[0] in vowels):
+    elif (word[-1] == 'ь') \
+            and (affix[0] in vowels):
         result = word[:-1] + affix
 
     # В словах русского происхождения, оканчивающихся на:
@@ -78,7 +82,8 @@ def add_affix_with_harmony(word: str, affix: str) -> str:
           word.endswith("ДЖ") or
           word.endswith("ПТ") or
           word.endswith("РЗЬ") or
-          word.endswith("НКТ")) and affix[0] in consonants:
+          word.endswith("НКТ")) \
+            and (affix[0] in consonants):
         result = word + 'ы' + affix
         # TODO result = word + 'i' + affix
 

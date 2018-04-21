@@ -34,11 +34,11 @@ def generate_ordinal_numeral(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
-    if len(set(word[-1]).intersection(vowels)) != 0:
+    if (word[-1] in vowels):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ншы",
                                                    soft_affix="ншi")
-    elif len(set(word[-1]).intersection(consonants)) != 0:
+    elif (word[-1] in consonants):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ыншы",
                                                    soft_affix="iншi")
