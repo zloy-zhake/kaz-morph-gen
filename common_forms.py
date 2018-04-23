@@ -90,8 +90,6 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     # После согласных
     #     -ым, -iм
 
-    # TODO заменить эту каку на word[-1] in vowels
-
     if (word[-1] in vowels):
         new_word = add_affix_with_harmony(word, affix='м')
     elif (word[-1] in consonants):
