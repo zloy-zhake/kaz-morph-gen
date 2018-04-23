@@ -9,6 +9,7 @@ def generate_adjective_forms(word_and_tags: tuple) -> list:
     """
     result = []
     result += generate_comparative_adjective(word_and_tags)
+    result += generate_superlative_adjective(word_and_tags)
 
     return result
 
@@ -61,4 +62,43 @@ def generate_comparative_adjective(word_and_tags: tuple) -> list:
     new_tags["degree_of_comparison"] = "<comp>"
     result.append((new_word, new_tags))
 
+    return result
+
+
+def generate_superlative_adjective(word_and_tags: tuple) -> list:
+    """функция, генерирующая превосходную степень прилагательного
+
+    Удвоение начального слога:
+    Жап – жақсы (весьма хорошо)
+
+    Исключение :
+    Аппақ – очень белый
+    Көкпенбек – очень синий
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if word == "ақ":
+        new_word = "аппақ"
+        new_tags = tags.copy()
+        new_tags["degree_of_comparison"] = "<sup>"
+        result.append((new_word, new_tags))
+        return result
+    if word == "көк":
+        new_word = "көкпенбек"
+        new_tags = tags.copy()
+        new_tags["degree_of_comparison"] = "<sup>"
+        result.append((new_word, new_tags))
+        return result
+
+    # Удвоение начального слога:
+    # Жап – жақсы (весьма хорошо)
+    first_vowel = 0
+    while word[first_vowel] not in vowels:
+        first_vowel += 1
+
+    new_word = word[:first_vowel + 1] + "п-" + word
+    new_tags = tags.copy()
+    new_tags["degree_of_comparison"] = "<sup>"
+    result.append((new_word, new_tags))
     return result
