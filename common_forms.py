@@ -408,3 +408,129 @@ def generate_komektes_septik(word_and_tags: tuple) -> list:
     result.append((new_word, new_tags))
 
     return result
+
+
+def generate_all_personals(word_and_tags: tuple) -> list:
+    # region
+    """Функция, генерирующая личную форму (жіктік).
+    1 лицо ед.числа
+        -мын, -мін
+        -бын, -бін
+        -пын, -пін
+
+    2 лицо ед.числа
+        -сың, -сің
+
+    2 лицо ед.числа (вежливое)
+        -сыз, -сіз
+
+    1 лицо мн.числа
+        -мыз, -міз
+        -быз, -біз
+        -пыз, -піз
+
+    2 лицо мн.числа
+        -сыңдар, -сіңдер
+
+    2 лицо мн.числа (вежливое)
+        -сыздар, -сіздер
+
+    3 лицо ед. и мн. числа
+        -
+    """
+    # endregion
+
+    word, tags = word_and_tags
+    result = []
+
+    # ед.число
+    if ("plurality" not in tags) or (tags["plurality"] != "<pl>"):
+        # 1 лицо ед.числа
+        #     -мын, -мін
+        #     -бын, -бін
+        #     -пын, -пін
+        if (word[-1] in vowels) \
+                or (word[-1] in ['м', 'н', 'ң', 'р', 'л']):
+            new_word = add_affix_choosing_hard_or_soft(word,
+                                                       hard_affix="мын",
+                                                       soft_affix="мін")
+        elif (word[-1] in ['ж', 'з']):
+            new_word = add_affix_choosing_hard_or_soft(word,
+                                                       hard_affix="бын",
+                                                       soft_affix="бін")
+        elif (word[-1] in voiceless_consonant) \
+                or (word[-1] in ['б', 'в', 'г', 'д']):
+            new_word = add_affix_choosing_hard_or_soft(word,
+                                                       hard_affix="пын",
+                                                       soft_affix="пін")
+        new_tags = tags.copy()
+        new_tags["person"] = "<p1>"
+        new_tags["plurality"] = "<sg>"
+        result.append((new_word, new_tags))
+
+        # 2 лицо ед.числа
+        # -сың, -сің
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="сың",
+                                                   soft_affix="сің")
+        new_tags = tags.copy()
+        new_tags["person"] = "<p2>"
+        new_tags["plurality"] = "<sg>"
+        result.append((new_word, new_tags))
+
+        # 2 лицо ед.числа (вежливое)
+        #     -сыз, -сіз
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="сыз",
+                                                   soft_affix="сіз")
+        new_tags = tags.copy()
+        new_tags["person"] = "<p2>"
+        new_tags["plurality"] = "<sg>"
+        result.append((new_word, new_tags))
+
+    # мн.число
+
+    # 1 лицо мн.числа
+    # -мыз, -міз
+    # -быз, -біз
+    # -пыз, -піз
+    if (word[-1] in vowels) \
+            or (word[-1] in ['м', 'н', 'ң', 'р', 'л']):
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="мыз",
+                                                   soft_affix="міз")
+    elif (word[-1] in ['ж', 'з']):
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="быз",
+                                                   soft_affix="біз")
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'г', 'д']):
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="пыз",
+                                                   soft_affix="піз")
+    new_tags = tags.copy()
+    new_tags["person"] = "<p1>"
+    new_tags["plurality"] = "<pl>"
+    result.append((new_word, new_tags))
+
+    # 2 лицо мн.числа
+    # -сыңдар, -сіңдер
+    new_word = add_affix_choosing_hard_or_soft(word,
+                                               hard_affix="сыңдар",
+                                               soft_affix="сіңдер")
+    new_tags = tags.copy()
+    new_tags["person"] = "<p2>"
+    new_tags["plurality"] = "<pl>"
+    result.append((new_word, new_tags))
+
+    # 2 лицо мн.числа (вежливое)
+    # -сыздар, -сіздер
+    new_word = add_affix_choosing_hard_or_soft(word,
+                                               hard_affix="сыздар",
+                                               soft_affix="сіздер")
+    new_tags = tags.copy()
+    new_tags["person"] = "<p2>"
+    new_tags["plurality"] = "<pl>"
+    result.append((new_word, new_tags))
+
+    return result
