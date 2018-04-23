@@ -1,5 +1,6 @@
 from morph_rules import vowels
 from morph_rules import consonants
+from morph_rules import voiceless_consonant
 from morph_rules import add_affix_choosing_hard_or_soft
 
 
@@ -39,14 +40,23 @@ def generate_comparative_adjective(word_and_tags: tuple) -> list:
 
     # -лау/-леу
     # -дау/-деу
-    if (word[-1] in vowels):
+    # -тау/-теу
+    if (word[-1] in vowels) \
+            or (word[-1] in ('р', 'й', 'у')):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="лау",
                                                    soft_affix="леу")
-    elif (word[-1] in consonants):
+
+    elif word[-1] in ('м', 'н', 'ң', 'л', 'з'):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="дау",
                                                    soft_affix="деу")
+
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ('б', 'в', 'г', 'д')):
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="тау",
+                                                   soft_affix="теу")
     new_tags = tags.copy()
     new_tags["degree_of_comparison"] = "<comp>"
     result.append((new_word, new_tags))
