@@ -2,14 +2,14 @@
 # TODO Петух, с.39
 
 # твёрдые гласные
-hard_vowels = {'а', 'о', 'ы', 'ұ', 'у', 'и'}
+hard_vowels = {'а', 'о', 'ы', 'ұ', 'у'}
 # мягкие гласные
-soft_vowels = {'ә', 'ө', 'э', 'у', 'и', 'ү', 'і', 'е'}
+soft_vowels = {'ә', 'ө', 'і', 'ү', 'и', 'е', 'э'}
 # все гласные
 vowels = hard_vowels.union(soft_vowels)
 
 # звонкие согласные
-voiced_consonants = {'б', 'в', 'г', 'д', 'ж', 'з'}
+voiced_consonants = {'б', 'в', 'г', 'ғ', 'д', 'ж', 'з'}
 # глухие согласные
 voiceless_consonant = {'к', 'қ', 'п', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ'}
 # сонорные согласные
@@ -19,11 +19,9 @@ hard_consonants = {'қ', 'ғ'}
 # мягкие согласные
 soft_consonants = {'к', 'г'}
 # все согласные
-consonants = (voiced_consonants.
-              union(voiceless_consonant).
-              union(sonorous_consonants).
-              union(hard_consonants).
-              union(soft_consonants))
+consonants = (voiced_consonants.union(
+              voiceless_consonant).union(
+              sonorous_consonants))
 
 
 def add_affix_with_harmony(word: str, affix: str) -> str:
