@@ -51,3 +51,13 @@ numeral_type
 
 negativity
     <neg> - отрицательная форма
+
+==========
+
+Грамматические формы прилагательных
+
+degree_of_comparison - степени сравнения
+    <pst> - positive - положительная
+    <comp> - comparative - сравненительная
+    <sup> - superlative - превосходная
+
