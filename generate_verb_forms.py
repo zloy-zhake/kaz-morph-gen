@@ -1,6 +1,7 @@
 from morph_rules import vowels
 from morph_rules import voiced_consonants
 from morph_rules import voiceless_consonant
+from morph_rules import add_affix_with_harmony
 from morph_rules import add_affix_choosing_hard_or_soft
 from common_forms import generate_all_personals
 
@@ -12,6 +13,7 @@ def generate_verb_forms(word_and_tags: tuple) -> list:
     result += generate_negative_verb(word_and_tags)
     result += generate_all_zhedel_otken_shaq(word_and_tags)
     result += generate_all_buryngy_otken_shaq_1(word_and_tags)
+    result += generate_all_buryngy_otken_shaq_3(word_and_tags)
 
     return result
 
@@ -156,5 +158,31 @@ def generate_all_buryngy_otken_shaq_1(word_and_tags: tuple) -> list:
 
     # Добавляем все личные окончания
     result += generate_all_personals((new_word, new_tags))
+
+    # TODO добавить генерацию 3 лица
+    return result
+
+
+def generate_all_buryngy_otken_shaq_3(word_and_tags: tuple) -> list:
+    """функция, генерирующая бұрынғы өткен шақ 3 во всех лицах
+    Основа глагола + -п/-ып/-іп + личные окончания
+    гласные -п
+    согласные -ып/-іп
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if word[-1] in vowels:
+        new_word = add_affix_with_harmony(word, affix='п')
+    else:
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="ып",
+                                                   soft_affix="іп")
+    new_tags = tags.copy()
+    new_tags["tense"] = "<past><buryngy-otken-3>"
+
+    # Добавляем все личные окончания
+    result += generate_all_personals((new_word, new_tags))
+    # TODO добавить генерацию 3 лица
 
     return result
