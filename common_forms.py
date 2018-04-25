@@ -152,7 +152,7 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
     # тут подходят px2sg и px2pl, пока ставится "объединенный вариант"
     # TODO придумать тег для вежлифой формы
     new_tags = tags.copy()
-    new_tags["person"] = "<p2>"
+    new_tags["person"] = "<p2_2>"
     new_tags["possession"] = "<px2sp_2>"
     result.append((new_word, new_tags))
 
@@ -484,7 +484,7 @@ def generate_all_personals(word_and_tags: tuple) -> list:
                                                    hard_affix="сыз",
                                                    soft_affix="сіз")
         new_tags = tags.copy()
-        new_tags["person"] = "<p2>"
+        new_tags["person"] = "<p2_2>"
         new_tags["plurality"] = "<sg>"
         result.append((new_word, new_tags))
 
@@ -529,7 +529,7 @@ def generate_all_personals(word_and_tags: tuple) -> list:
                                                hard_affix="сыздар",
                                                soft_affix="сіздер")
     new_tags = tags.copy()
-    new_tags["person"] = "<p2>"
+    new_tags["person"] = "<p2_2>"
     new_tags["plurality"] = "<pl>"
     result.append((new_word, new_tags))
 
