@@ -14,7 +14,8 @@ def generate_verb_forms(word_and_tags: tuple) -> list:
     result += generate_all_zhedel_otken_shaq(word_and_tags)
     result += generate_all_buryngy_otken_shaq_1(word_and_tags)
     result += generate_all_buryngy_otken_shaq_3(word_and_tags)
-
+    # TODO добавить комбинации с отрицанием
+    # (После основы вставляется аффикс отрицания)
     return result
 
 
