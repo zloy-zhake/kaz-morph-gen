@@ -160,6 +160,7 @@ def generate_all_buryngy_otken_shaq_1(word_and_tags: tuple) -> list:
     result += generate_all_personals((new_word, new_tags))
 
     # TODO добавить генерацию 3 лица
+
     return result
 
 
@@ -183,6 +184,15 @@ def generate_all_buryngy_otken_shaq_3(word_and_tags: tuple) -> list:
 
     # Добавляем все личные окончания
     result += generate_all_personals((new_word, new_tags))
-    # TODO добавить генерацию 3 лица
+
+    tmp_new_word = add_affix_choosing_hard_or_soft(new_word,
+                                                   hard_affix="ты",
+                                                   soft_affix="ті")
+    tmp_new_tags = tags.copy()
+    tmp_new_tags["tense"] = "<past><buryngy-otken-3>"
+    tmp_new_tags["person"] = "<p3>"
+    tmp_new_tags["plurality"] = "<sp>"
+
+    result.append((tmp_new_word, tmp_new_tags))
 
     return result
