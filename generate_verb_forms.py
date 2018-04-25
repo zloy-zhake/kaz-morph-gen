@@ -2,6 +2,7 @@ from morph_rules import vowels
 from morph_rules import voiced_consonants
 from morph_rules import voiceless_consonant
 from morph_rules import add_affix_choosing_hard_or_soft
+from common_forms import generate_all_personals
 
 
 def generate_verb_forms(word_and_tags: tuple) -> list:
@@ -10,6 +11,7 @@ def generate_verb_forms(word_and_tags: tuple) -> list:
     result = []
     result += generate_negative_verb(word_and_tags)
     result += generate_all_zhedel_otken_shaq(word_and_tags)
+    result += generate_all_buryngy_otken_shaq_1(word_and_tags)
 
     return result
 
@@ -128,5 +130,31 @@ def generate_all_zhedel_otken_shaq(word_and_tags: tuple) -> list:
     new_tags["person"] = "<p2_2>"
     new_tags["plurality"] = "<pl>"
     result.append((tmp_new_word, new_tags))
+
+    return result
+
+
+def generate_all_buryngy_otken_shaq_1(word_and_tags: tuple) -> list:
+    """функция, генерирующая бұрынғы өткен шақ 1 во всех лицах
+    Основа глагола + -ған/-ген/-қан/-кен + личные окончания
+    глухие -қан/-кен
+    неглухие -ған/-ген
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if word[-1] in voiceless_consonant:
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="қан",
+                                                   soft_affix="кен")
+    else:
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="ған",
+                                                   soft_affix="ген")
+    new_tags = tags.copy()
+    new_tags["tense"] = "<past><buryngy-otken-1>"
+
+    # Добавляем все личные окончания
+    result += generate_all_personals((new_word, new_tags))
 
     return result

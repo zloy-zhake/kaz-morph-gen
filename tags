@@ -56,6 +56,9 @@ negativity
 
 tense - время
     <past><zhedel-otken> - жедел өткен шақ
+    <past><buryngy-otken-1> - бұрынғы өткен шақ 1
+    <past><buryngy-otken-2> - бұрынғы өткен шақ 2 (добавляется ЕКЕН, пока не реализован)
+    <past><buryngy-otken-3> - бұрынғы өткен шақ 3
 
 
 ==========
