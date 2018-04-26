@@ -14,6 +14,7 @@ def generate_verb_forms(word_and_tags: tuple) -> list:
     result += generate_all_zhedel_otken_shaq(word_and_tags)
     result += generate_all_buryngy_otken_shaq_1(word_and_tags)
     result += generate_all_buryngy_otken_shaq_3(word_and_tags)
+    result += generate_all_naq_osy_shaq(word_and_tags)
     # TODO добавить комбинации с отрицанием
     # (После основы вставляется аффикс отрицания)
     return result
@@ -195,5 +196,23 @@ def generate_all_buryngy_otken_shaq_3(word_and_tags: tuple) -> list:
     tmp_new_tags["plurality"] = "<sp>"
 
     result.append((tmp_new_word, tmp_new_tags))
+
+    return result
+
+
+def generate_all_naq_osy_shaq(word_and_tags: tuple) -> list:
+    """функция, генерирующая нақ осы шақ во всех лицах.
+    Для 4 слов (тұр, отыр, жүр, жатыр)
+    Основа глагола + личные окончания
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if word in ("тұр", "отыр", "жүр", "жатыр"):
+        new_tags = tags.copy()
+        new_tags["tense"] = "<pres><naq-osy>"
+
+        # Добавляем все личные окончания
+        result += generate_all_personals((word, new_tags))
 
     return result
