@@ -159,7 +159,7 @@ def generate_all_buryngy_otken_shaq_1(word_and_tags: tuple) -> list:
     new_tags["tense"] = "<past><buryngy-otken-1>"
 
     # Добавляем все личные окончания
-    result += generate_all_personals((new_word, new_tags))
+    result += generate_all_personals((new_word, new_tags))  # TODO change
 
     # TODO добавить генерацию 3 лица
 
@@ -185,7 +185,7 @@ def generate_all_buryngy_otken_shaq_3(word_and_tags: tuple) -> list:
     new_tags["tense"] = "<past><buryngy-otken-3>"
 
     # Добавляем все личные окончания
-    result += generate_all_personals((new_word, new_tags))
+    result += generate_all_personals((new_word, new_tags))  # TODO change
 
     tmp_new_word = add_affix_choosing_hard_or_soft(new_word,
                                                    hard_affix="ты",
@@ -213,6 +213,6 @@ def generate_all_naq_osy_shaq(word_and_tags: tuple) -> list:
         new_tags["tense"] = "<pres><naq-osy>"
 
         # Добавляем все личные окончания
-        result += generate_all_personals((word, new_tags))
+        result += generate_all_personals((word, new_tags))  # TODO change
 
     return result

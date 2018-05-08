@@ -15,7 +15,7 @@ def generate_noun_forms(word_and_tags: tuple) -> list:
     result += plural
     result += generate_all_possessives(plural[0])
     result += generate_all_cases(word_and_tags)
-    result += generate_all_personals(word_and_tags)
+    result += generate_all_personals(word_and_tags)  # TODO change
     # TODO сначала отдельные аффиксы - потом комбинировать
     # Падежные окончания (и личные) применяются в конце слова
     # (ставятся последними, если аффиксов несколько).
