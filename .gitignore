@@ -107,3 +107,6 @@ ENV/
 
 # pdf files
 *.pdf
+
+# pytest
+.pytest_cache
