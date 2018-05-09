@@ -27,9 +27,9 @@ def generate_number_forms(word_and_tags: tuple) -> list:
 def generate_ordinal_numeral(word_and_tags: tuple) -> list:
     """функция, генерирующая порядковое числительное
     после гласных
-        -ншы, -ншi
+        -ншы, -нші
     после согласных
-        -ыншы, -iншi
+        -ыншы, -інші
     """
     word, tags = word_and_tags
     result = []
@@ -37,11 +37,11 @@ def generate_ordinal_numeral(word_and_tags: tuple) -> list:
     if (word[-1] in vowels):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ншы",
-                                                   soft_affix="ншi")
+                                                   soft_affix="нші")
     elif (word[-1] in consonants):
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ыншы",
-                                                   soft_affix="iншi")
+                                                   soft_affix="інші")
     new_tags = tags.copy()
     new_tags["numeral_type"] = "<ord>"
     result.append((new_word, new_tags))
