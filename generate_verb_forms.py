@@ -4,6 +4,8 @@ from morph_rules import voiceless_consonant
 from morph_rules import add_affix_with_harmony
 from morph_rules import add_affix_choosing_hard_or_soft
 from common_forms import generate_all_long_personals_without_3p
+from common_forms import generate_all_long_personals_with_3p
+from common_forms import generate_all_short_personals
 
 
 def generate_verb_forms(word_and_tags: tuple) -> list:
@@ -62,6 +64,7 @@ def generate_all_zhedel_otken_shaq(word_and_tags: tuple) -> list:
     word, tags = word_and_tags
     result = []
 
+    # добавляются -ды/-дi/-ты/-тi
     if word[-1] in voiceless_consonant:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ты",
@@ -70,70 +73,11 @@ def generate_all_zhedel_otken_shaq(word_and_tags: tuple) -> list:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ды",
                                                    soft_affix="ді")
-
-    # 3 лицо ед. и мн.число генерируется вначале
-    # Потом на его основе генерируются остальные лица
     new_tags = tags.copy()
     new_tags["tense"] = "<past><zhedel-otken>"
-    new_tags["person"] = "<p3>"
-    new_tags["plurality"] = "<sp>"
-    result.append((new_word, new_tags))
 
-    # 1 лицо ед.число
-    tmp_new_word = new_word + 'м'
-    new_tags = tags.copy()
-    new_tags["tense"] = "<past><zhedel-otken>"
-    new_tags["person"] = "<p1>"
-    new_tags["plurality"] = "<sg>"
-    result.append((tmp_new_word, new_tags))
-
-    # 1 лицо мн.число
-    tmp_new_word = add_affix_choosing_hard_or_soft(new_word,
-                                                   hard_affix='қ',
-                                                   soft_affix='к')
-    new_tags = tags.copy()
-    new_tags["tense"] = "<past><zhedel-otken>"
-    new_tags["person"] = "<p1>"
-    new_tags["plurality"] = "<pl>"
-    result.append((tmp_new_word, new_tags))
-
-    # 2 лицо ед.число
-    tmp_new_word = new_word + 'ң'
-    new_tags = tags.copy()
-    new_tags["tense"] = "<past><zhedel-otken>"
-    new_tags["person"] = "<p2>"
-    new_tags["plurality"] = "<sg>"
-    result.append((tmp_new_word, new_tags))
-
-    # 2 лицо мн.число
-    tmp_new_word = add_affix_choosing_hard_or_soft(new_word,
-                                                   hard_affix='ңдар',
-                                                   soft_affix='ңдер')
-    new_tags = tags.copy()
-    new_tags["tense"] = "<past><zhedel-otken>"
-    new_tags["person"] = "<p2>"
-    new_tags["plurality"] = "<pl>"
-    result.append((tmp_new_word, new_tags))
-
-    # 2 лицо (вежливое) ед.число
-    tmp_new_word = add_affix_choosing_hard_or_soft(new_word,
-                                                   hard_affix='ңыз',
-                                                   soft_affix='ңіз')
-    new_tags = tags.copy()
-    new_tags["tense"] = "<past><zhedel-otken>"
-    new_tags["person"] = "<p2_2>"
-    new_tags["plurality"] = "<sg>"
-    result.append((tmp_new_word, new_tags))
-
-    # 2 лицо (вежливое) мн.число
-    tmp_new_word = add_affix_choosing_hard_or_soft(new_word,
-                                                   hard_affix='ңыздар',
-                                                   soft_affix='ңіздер')
-    new_tags = tags.copy()
-    new_tags["tense"] = "<past><zhedel-otken>"
-    new_tags["person"] = "<p2_2>"
-    new_tags["plurality"] = "<pl>"
-    result.append((tmp_new_word, new_tags))
+    # добавляются краткие личные окончания
+    result += generate_all_short_personals((new_word, new_tags))
 
     return result
 
@@ -161,8 +105,6 @@ def generate_all_buryngy_otken_shaq_1(word_and_tags: tuple) -> list:
     # Добавляем все личные окончания
     result += generate_all_long_personals_without_3p((new_word, new_tags))
 
-    # TODO добавить генерацию 3 лица
-
     return result
 
 
@@ -185,17 +127,7 @@ def generate_all_buryngy_otken_shaq_3(word_and_tags: tuple) -> list:
     new_tags["tense"] = "<past><buryngy-otken-3>"
 
     # Добавляем все личные окончания
-    result += generate_all_long_personals_without_3p((new_word, new_tags))
-
-    tmp_new_word = add_affix_choosing_hard_or_soft(new_word,
-                                                   hard_affix="ты",
-                                                   soft_affix="ті")
-    tmp_new_tags = tags.copy()
-    tmp_new_tags["tense"] = "<past><buryngy-otken-3>"
-    tmp_new_tags["person"] = "<p3>"
-    tmp_new_tags["plurality"] = "<sp>"
-
-    result.append((tmp_new_word, tmp_new_tags))
+    result += generate_all_long_personals_with_3p((new_word, new_tags))
 
     return result
 

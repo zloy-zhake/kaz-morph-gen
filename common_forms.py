@@ -536,6 +536,14 @@ def generate_all_long_personals_without_3p(word_and_tags: tuple) -> list:
     new_tags["plurality"] = "<pl>"
     result.append((new_word, new_tags))
 
+    # 3 лицо ед. и мн. числа
+    #     -
+    new_word = word
+    new_tags = tags.copy()
+    new_tags["person"] = "<p3>"
+    new_tags["plurality"] = "<sp>"
+    result.append((new_word, new_tags))
+
     return result
 
 
@@ -577,6 +585,9 @@ def generate_all_long_personals_with_3p(word_and_tags: tuple) -> list:
     result = []
 
     # 1, 2 лица так же, как и в предыдущей функции
+    # !!!!!
+    # TODO ЭТО БАГ. ОН ЛОМАЕТ ТЕСТ test_generate_all_buryngy_otken_shaq_3
+    # !!!!!
     result += generate_all_long_personals_without_3p(word_and_tags)
 
     # 3 лицо
@@ -688,7 +699,9 @@ def generate_all_short_personals(word_and_tags: tuple) -> list:
     # -қ
     # -ық, -ік
     if (word[-1] in vowels):
-        new_word = add_affix_with_harmony(word, affix='к')
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="қ",
+                                                   soft_affix="к")
     else:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ық",
@@ -728,6 +741,14 @@ def generate_all_short_personals(word_and_tags: tuple) -> list:
     new_tags = tags.copy()
     new_tags["person"] = "<p2_2>"
     new_tags["plurality"] = "<pl>"
+    result.append((new_word, new_tags))
+
+    # 3 лицо ед. и мн. числа
+    #     -
+    new_word = word
+    new_tags = tags.copy()
+    new_tags["person"] = "<p3>"
+    new_tags["plurality"] = "<sp>"
     result.append((new_word, new_tags))
 
     return result

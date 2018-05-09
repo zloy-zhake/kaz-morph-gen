@@ -36,6 +36,7 @@ def test_generate_collective_numeral():
                         "жетеу"]
     # results_to_test содержит только сгенерированные слова
     results_to_test = []
-    results_to_test = generate_results_to_test(func=generate_collective_numeral,
-                                               words_to_test=words_to_test)
+    results_to_test = \
+        generate_results_to_test(func=generate_collective_numeral,
+                                 words_to_test=words_to_test)
     assert results_to_test == expected_results
