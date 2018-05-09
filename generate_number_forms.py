@@ -55,7 +55,7 @@ def generate_collective_numeral(word_and_tags: tuple) -> list:
     -ау, -еу
     """
     # Числительные для образования собирательной формы
-    one_to_seven = {"бiр": "бiреу",
+    one_to_seven = {"бір": "біреу",
                     "екі": "екеу",
                     "үш": "үшеу",
                     "төрт": "төртеу",
