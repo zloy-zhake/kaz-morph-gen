@@ -148,3 +148,28 @@ def generate_all_naq_osy_shaq(word_and_tags: tuple) -> list:
         result += generate_all_long_personals_without_3p((word, new_tags))
 
     return result
+
+
+def generate_all_auyspaly_osy_keler_shaq(word_and_tags: tuple) -> list:
+    """функция, генерирующая ауыспалы осы/келер шақ во всех лицах.
+    Основа глагола + -а/-е/-й + личные окончания (длинные с 3 лицом)
+    а – в твёрдых словах
+    е – в мягких словах
+    й – после гласных
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if word[-1] in vowels:
+        new_word = add_affix_with_harmony(word, affix='й')
+    else:
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix='а',
+                                                   soft_affix='е')
+    new_tags = tags.copy()
+    new_tags["tense"] = "<pres><future>"
+
+    # Добавляем все личные окончания
+    result += generate_all_long_personals_with_3p((new_word, new_tags))
+
+    return result

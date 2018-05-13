@@ -5,6 +5,7 @@ from generate_verb_forms import generate_all_zhedel_otken_shaq
 from generate_verb_forms import generate_all_buryngy_otken_shaq_1
 from generate_verb_forms import generate_all_buryngy_otken_shaq_3
 from generate_verb_forms import generate_all_naq_osy_shaq
+from generate_verb_forms import generate_all_auyspaly_osy_keler_shaq
 
 
 @pytest.mark.skip(reason="Не работает слово iш. Скорее всего короткое.")
@@ -97,5 +98,24 @@ def test_generate_all_naq_osy_shaq():
     results_to_test = []
     results_to_test = \
         generate_results_to_test(func=generate_all_naq_osy_shaq,
+                                 words_to_test=words_to_test)
+    assert results_to_test == expected_results
+
+
+@pytest.mark.skip(reason="Ошибка в личных окончаниях. \
+                          Проверить по другой книге")
+def test_generate_all_auyspaly_osy_keler_shaq():
+    words_to_test = [("істе", dict())]
+    expected_results = ["істеймін",
+                        "істейсің",
+                        "істейсіз",
+                        "істейміз",
+                        "істейсіңдер",
+                        "істейсіздер",
+                        "істейді"]
+    # results_to_test содержит только сгенерированные слова
+    results_to_test = []
+    results_to_test = \
+        generate_results_to_test(func=generate_all_auyspaly_osy_keler_shaq,
                                  words_to_test=words_to_test)
     assert results_to_test == expected_results
