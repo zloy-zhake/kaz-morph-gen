@@ -173,3 +173,28 @@ def generate_all_auyspaly_osy_keler_shaq(word_and_tags: tuple) -> list:
     result += generate_all_long_personals_with_3p((new_word, new_tags))
 
     return result
+
+
+def generate_all_bolzhaldy_keler_shaq(word_and_tags: tuple) -> list:
+    """функция, генерирующая болжалды келер шақ во всех лицах.
+    Основа глагола + -ар/-ер/-р + личные окончания (длинные без 3 лица)
+    ар – в твёрдых словах
+    ер – в мягких словах
+    р – после гласных
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if word[-1] in vowels:
+        new_word = add_affix_with_harmony(word, affix='р')
+    else:
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix='ар',
+                                                   soft_affix='ер')
+    new_tags = tags.copy()
+    new_tags["tense"] = "<future><bolzhaldy-keler>"
+
+    # Добавляем все личные окончания
+    result += generate_all_long_personals_without_3p((new_word, new_tags))
+
+    return result
