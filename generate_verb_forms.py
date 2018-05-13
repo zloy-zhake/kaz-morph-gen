@@ -234,3 +234,22 @@ def generate_all_maqsatty_keler_shaq(word_and_tags: tuple) -> list:
     result += generate_all_long_personals_without_3p((new_word, new_tags))
 
     return result
+
+
+def generate_all_negative_maqsatty_keler_shaq(word_and_tags: tuple) -> list:
+    """функция, генерирующая отрицательную форму мақсатты келер шақ\n
+    во всех лицах.
+    Основа глагола + -ма/-ме/-ба/-бе/-па/-пе + с + личные окончания\n
+    (длинные без 3 лица)
+    """
+    word, tags = word_and_tags
+    result = []
+
+    [(new_word, new_tags)] = generate_negative_verb(word_and_tags)
+    new_word += 'с'
+    new_tags["tense"] = "<future><maqsatty-keler>"
+
+    # Добавляем все личные окончания
+    result += generate_all_long_personals_without_3p((new_word, new_tags))
+
+    return result
