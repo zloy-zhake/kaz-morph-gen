@@ -198,3 +198,39 @@ def generate_all_bolzhaldy_keler_shaq(word_and_tags: tuple) -> list:
     result += generate_all_long_personals_without_3p((new_word, new_tags))
 
     return result
+
+
+def generate_all_maqsatty_keler_shaq(word_and_tags: tuple) -> list:
+    """функция, генерирующая мақсатты келер шақ во всех лицах.
+    Основа глагола + -мақ/-мек/-бақ/-бек + личные окончания(длинные без 3 лица)
+    Гласные и м, н, ң, р, л
+        -мақ/-мек
+    ж, з
+        -бақ/-бек
+    Глухие и б, в, г, д
+        -пақ/-пек
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if (word[-1] in vowels) \
+            or (word[-1] in ['м', 'н', 'ң', 'р', 'л']):
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="мақ",
+                                                   soft_affix="мек")
+    elif (word[-1] in ['ж', 'з']):
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="бақ",
+                                                   soft_affix="бек")
+    elif (word[-1] in voiceless_consonant) \
+            or (word[-1] in ['б', 'в', 'г', 'д']):
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix="пақ",
+                                                   soft_affix="пек")
+    new_tags = tags.copy()
+    new_tags["tense"] = "<future><maqsatty-keler>"
+
+    # Добавляем все личные окончания
+    result += generate_all_long_personals_without_3p((new_word, new_tags))
+
+    return result
