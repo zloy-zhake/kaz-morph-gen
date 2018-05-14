@@ -9,6 +9,7 @@ from generate_verb_forms import generate_all_auyspaly_osy_keler_shaq
 from generate_verb_forms import generate_all_bolzhaldy_keler_shaq
 from generate_verb_forms import generate_all_maqsatty_keler_shaq
 from generate_verb_forms import generate_all_negative_maqsatty_keler_shaq
+from generate_verb_forms import generate_all_imperative_mood
 
 
 @pytest.mark.skip(reason="Не работает слово iш. Скорее всего короткое.")
@@ -171,5 +172,22 @@ def test_generate_all_negative_maqsatty_keler_shaq():
     results_to_test = []
     results_to_test = \
         generate_results_to_test(func=generate_all_negative_maqsatty_keler_shaq,
+                                 words_to_test=words_to_test)
+    assert results_to_test == expected_results
+
+
+def test_generate_all_imperative_mood():
+    words_to_test = [("ал", dict())]
+    expected_results = ["алайын",
+                        "ал",
+                        "алыңыз",
+                        "алайық",
+                        "алыңдар",
+                        "алыңыздар",
+                        "алсын"]
+    # results_to_test содержит только сгенерированные слова
+    results_to_test = []
+    results_to_test = \
+        generate_results_to_test(func=generate_all_imperative_mood,
                                  words_to_test=words_to_test)
     assert results_to_test == expected_results
