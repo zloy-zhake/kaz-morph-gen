@@ -374,3 +374,22 @@ def generate_all_imperative_mood(word_and_tags: tuple) -> list:
     result.append((new_word, new_tags))
 
     return result
+
+
+def generate_all_conditional_mood(word_and_tags: tuple) -> list:
+    """функция, генерирующая условное наклонение глагола во всех лицах.
+    Основа глагола + -са/-се + личные окончания (короткие без 3 лица)
+    """
+    word, tags = word_and_tags
+    result = []
+
+    new_word = add_affix_choosing_hard_or_soft(word,
+                                               hard_affix="са",
+                                               soft_affix="се")
+    new_tags = tags.copy()
+    new_tags["mood"] = "<cni>"
+
+    # Добавляем все личные окончания
+    result += generate_all_short_personals((new_word, new_tags))
+
+    return result
