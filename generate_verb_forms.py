@@ -8,6 +8,9 @@ from common_forms import generate_all_long_personals_with_3p
 from common_forms import generate_all_short_personals
 
 
+# TODO страдательный залог, понудительный залог - по другой книге
+# TODO придумать что-нибудь для вспомогательных глаголов
+
 def generate_verb_forms(word_and_tags: tuple) -> list:
     """функция, генерирующая все формы для глагола
     """

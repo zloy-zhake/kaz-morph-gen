@@ -2,9 +2,7 @@
 # TODO Петух, с.39
 
 # твёрдые гласные
-# hard_vowels = {'а', 'о', 'ы', 'ұ', 'у'}
-# удалил у, надеюсь ничего не сломается
-hard_vowels = {'а', 'о', 'ы', 'ұ'}
+hard_vowels = {'а', 'о', 'ы', 'ұ', 'у'}
 # мягкие гласные
 soft_vowels = {'ә', 'ө', 'і', 'ү', 'и', 'е', 'э'}
 # все гласные
@@ -114,13 +112,19 @@ def add_affix_choosing_hard_or_soft(word: str,
                                     hard_affix: str,
                                     soft_affix: str) -> str:
     """Функция, добавляющая твёрдый или мягкий аффикс в зависимости от гласной,
-    находящейся среди последних 3 букв слова.
+    находящейся среди последних 2-3 букв слова.
     """
     result = ""
 
-    if len(set(word[-3:]).intersection(hard_vowels)) != 0:
-        result += add_affix_with_harmony(word, hard_affix)
-    if len(set(word[-3:]).intersection(soft_vowels)) != 0:
-        result += add_affix_with_harmony(word, soft_affix)
+    if len(word) > 2:
+        if len(set(word[-3:]).intersection(hard_vowels)) != 0:
+            result += add_affix_with_harmony(word, hard_affix)
+        if len(set(word[-3:]).intersection(soft_vowels)) != 0:
+            result += add_affix_with_harmony(word, soft_affix)
+    else:
+        if len(set(word[-2:]).intersection(hard_vowels)) != 0:
+            result += add_affix_with_harmony(word, hard_affix)
+        if len(set(word[-2:]).intersection(soft_vowels)) != 0:
+            result += add_affix_with_harmony(word, soft_affix)
 
     return result

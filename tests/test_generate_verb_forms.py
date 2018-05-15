@@ -46,7 +46,8 @@ def test_generate_all_zhedel_otken_shaq():
     assert results_to_test == expected_results
 
 
-@pytest.mark.skip(reason="Исправить ошибку?")
+@pytest.mark.skip(reason="Исправить ошибку в подборе аффикса \
+                          по последней букве. Нужна другая книга.")
 def test_generate_all_buryngy_otken_shaq_1():
     words_to_test = [("асыра", dict())]
     expected_results = ["асырағанмын",
