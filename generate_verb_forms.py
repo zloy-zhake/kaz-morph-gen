@@ -393,3 +393,23 @@ def generate_all_conditional_mood(word_and_tags: tuple) -> list:
     result += generate_all_short_personals((new_word, new_tags))
 
     return result
+
+
+def generate_reflexive_verb(word_and_tags: tuple) -> list:
+    """функция, генерирующая возвратный залог глагола.
+    Основа + -н/-ын/-ін
+    """
+    word, tags = word_and_tags
+    result = []
+
+    if word[-1] in vowels:
+        new_word = add_affix_with_harmony(word, affix='н')
+    else:
+        new_word = add_affix_choosing_hard_or_soft(word,
+                                                   hard_affix='ын',
+                                                   soft_affix='ін')
+    new_tags = tags.copy()
+    new_tags["reflexivity"] = "<ref>"
+    result.append((new_word, new_tags))
+
+    return result

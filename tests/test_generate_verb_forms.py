@@ -11,6 +11,7 @@ from generate_verb_forms import generate_all_maqsatty_keler_shaq
 from generate_verb_forms import generate_all_negative_maqsatty_keler_shaq
 from generate_verb_forms import generate_all_imperative_mood
 from generate_verb_forms import generate_all_conditional_mood
+from generate_verb_forms import generate_reflexive_verb
 
 
 @pytest.mark.skip(reason="Не работает слово iш. Скорее всего короткое.")
@@ -208,4 +209,15 @@ def test_generate_all_conditional_mood():
     results_to_test = \
         generate_results_to_test(func=generate_all_conditional_mood,
                                  words_to_test=words_to_test)
+    assert results_to_test == expected_results
+
+
+@pytest.mark.skip(reason="Не работает слово. Скорее всего короткое.")
+def test_generate_reflexive_verb():
+    words_to_test = [("жу", dict())]
+    expected_results = ["жуын"]
+    # results_to_test содержит только сгенерированные слова
+    results_to_test = []
+    results_to_test = generate_results_to_test(func=generate_reflexive_verb,
+                                               words_to_test=words_to_test)
     assert results_to_test == expected_results
