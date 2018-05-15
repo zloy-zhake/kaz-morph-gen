@@ -14,13 +14,12 @@ from generate_verb_forms import generate_all_conditional_mood
 from generate_verb_forms import generate_reflexive_verb
 
 
-@pytest.mark.skip(reason="Не работает слово iш. Скорее всего короткое.")
 def test_generate_negative_verb():
     words_to_test = [("сөйле", dict()),
-                     ("iш", dict()),
+                     ("іш", dict()),
                      ("тарт", dict())]
     expected_results = ["сөйлеме",
-                        "iшпе",
+                        "ішпе",
                         "тартпа"]
     # results_to_test содержит только сгенерированные слова
     results_to_test = []
