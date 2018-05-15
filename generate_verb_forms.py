@@ -413,3 +413,19 @@ def generate_reflexive_verb(word_and_tags: tuple) -> list:
     result.append((new_word, new_tags))
 
     return result
+
+
+def generate_infinitive(word_and_tags: tuple) -> list:
+    """функция, генерирующая инфинитив.
+    Основа + -у
+    TODO -ю
+    """
+    word, tags = word_and_tags
+    result = []
+
+    new_word = word + 'у'
+    new_tags = tags.copy()
+    new_tags["infinitive"] = "<inf>"
+    result.append((new_word, new_tags))
+
+    return result

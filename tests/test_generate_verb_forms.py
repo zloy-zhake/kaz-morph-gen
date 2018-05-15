@@ -12,6 +12,7 @@ from generate_verb_forms import generate_all_negative_maqsatty_keler_shaq
 from generate_verb_forms import generate_all_imperative_mood
 from generate_verb_forms import generate_all_conditional_mood
 from generate_verb_forms import generate_reflexive_verb
+from generate_verb_forms import generate_infinitive
 
 
 def test_generate_negative_verb():
@@ -218,5 +219,15 @@ def test_generate_reflexive_verb():
     # results_to_test содержит только сгенерированные слова
     results_to_test = []
     results_to_test = generate_results_to_test(func=generate_reflexive_verb,
+                                               words_to_test=words_to_test)
+    assert results_to_test == expected_results
+
+
+def test_generate_infinitive():
+    words_to_test = [("бар", dict())]
+    expected_results = ["бару"]
+    # results_to_test содержит только сгенерированные слова
+    results_to_test = []
+    results_to_test = generate_results_to_test(func=generate_infinitive,
                                                words_to_test=words_to_test)
     assert results_to_test == expected_results
