@@ -19,6 +19,7 @@ def generate_plural(word_and_tags: tuple) -> list:
     # endregion
 
     word, tags = word_and_tags
+    new_word = ""
 
     if (word[-1] in vowels) \
             or (word[-1] in ('р', 'й', 'у')):
@@ -92,7 +93,8 @@ def generate_all_possessives(word_and_tags: tuple) -> list:
 
     if (word[-1] in vowels):
         new_word = add_affix_with_harmony(word, affix='м')
-    elif (word[-1] in consonants):
+    # elif (word[-1] in consonants):
+    else:
         new_word = add_affix_choosing_hard_or_soft(word,
                                                    hard_affix="ым",
                                                    soft_affix="ім")
@@ -215,6 +217,7 @@ def generate_ilik_septik(word_and_tags: tuple) -> list:
     """
     word, tags = word_and_tags
     result = []
+    new_word = ""
 
     if (word[-1] in vowels) \
             or (word[-1] in ['м', 'н', 'ң']):
@@ -250,6 +253,7 @@ def generate_barys_septik(word_and_tags: tuple) -> list:
     """
     word, tags = word_and_tags
     result = []
+    new_word = ""
 
     if "<px1sg>" in tags.values() \
             or "<px2sp>" in tags.values():
@@ -291,6 +295,7 @@ def generate_tabys_septik(word_and_tags: tuple) -> list:
     """
     word, tags = word_and_tags
     result = []
+    new_word = ""
 
     if "<px3sp>" in tags.values():
         new_word = add_affix_with_harmony(word, affix='н')
@@ -326,6 +331,7 @@ def generate_zhatys_septik(word_and_tags: tuple) -> list:
     """
     word, tags = word_and_tags
     result = []
+    new_word = ""
 
     if "<px3sp>" in tags.values():
         new_word = add_affix_choosing_hard_or_soft(word,
@@ -360,6 +366,7 @@ def generate_shygys_septik(word_and_tags: tuple) -> list:
     """
     word, tags = word_and_tags
     result = []
+    new_word = ""
 
     if (word[-1] in vowels) \
             or (word[-1] in ['з', 'ж', 'р', 'й', 'л', 'у']):
@@ -393,6 +400,7 @@ def generate_komektes_septik(word_and_tags: tuple) -> list:
     """
     word, tags = word_and_tags
     result = []
+    new_word = ""
 
     if (word[-1] in vowels) \
             or (word[-1] in ['м', 'н', 'ң', 'р', 'л']):
@@ -445,6 +453,7 @@ def generate_all_long_personals_without_3p(word_and_tags: tuple) -> list:
 
     word, tags = word_and_tags
     result = []
+    new_word = ""
 
     # ед.число
     if ("plurality" not in tags) or (tags["plurality"] != "<pl>"):

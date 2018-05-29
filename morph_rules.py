@@ -39,17 +39,19 @@ def add_affix_with_harmony(word: str, affix: str) -> str:
     # Жап + ып = жауып
     if (word[-1] == 'к') \
             and (affix[0] in vowels):
-        result[-1] = 'г'
+        # TODO TypeError: 'str' object does not support item assignment
+        # result[-1] = 'г'
+        result = result[:-1] + 'г'
         result += affix
 
     elif (word[-1] == 'қ') \
             and (affix[0] in vowels):
-        result[-1] = 'ғ'
+        result = result[:-1] + 'ғ'
         result += affix
 
     elif (word[-1] == 'п') \
             and (affix[0] in vowels):
-        result[-1] = 'б'
+        result = result[:-1] + 'б'
         # TODO result[-1] = 'у'
         result += affix
 

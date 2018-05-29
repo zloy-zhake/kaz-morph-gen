@@ -13,7 +13,7 @@ def generate_noun_forms(word_and_tags: tuple) -> list:
     result += all_possessives
     plural = generate_plural(word_and_tags)
     result += plural
-    result += generate_all_possessives(plural[0])
+    # result += generate_all_possessives(plural[0])
     result += generate_all_cases(word_and_tags)
     result += generate_all_long_personals_without_3p(word_and_tags)
     # TODO сначала отдельные аффиксы - потом комбинировать
